@@ -72,6 +72,100 @@ namespace Homework_Theme_03
             // User2 победил!
             #endregion
 
+            Console.WriteLine("Вас приветсвует игра \"Обнули число!\"\n");
+
+            // Задание 1.
+            SimpleGame();
+
+            // Задание 2.
+            //BonusGame();
+
+            // Задание 3.
+            //SinglePlayerGame();
+
+            
+
+            
+
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Код базовой игры
+        /// </summary>
+        static void SimpleGame()
+        {
+            string playerOneName; // имя первого игрока
+            Console.WriteLine("Введите имя первого игрока:");
+            playerOneName = Console.ReadLine();
+
+            string playerTwoName; // имя второго игрока
+            Console.WriteLine("Введите имя второго игрока:");
+            playerTwoName = Console.ReadLine();
+
+            Random randomize = new Random(); // переменная для получения псевдослучайных чисел
+            int gameNumber = randomize.Next(12, 121); // загаданное случайное число
+
+            Console.WriteLine("\nОтлично! Вам необходимо обнулить задуманное игрой число,");
+            Console.WriteLine(" последовательно вычитая из него целые числа в диапазоне от 1 до 4.");
+
+            int playerNumber = 1; // номер ходящего игрока
+
+            //gameNumber = 10;
+            while (gameNumber > 0) // процесс игры
+            {
+                if (playerNumber == 1) // если ход первого игрока
+                {
+                    Console.WriteLine($"\nЧисло: {gameNumber}");
+                    int userTry = 0;
+                    
+                    bool rightNumber = false; // проверка на попадание введенного числа в диапазон условия задачи
+                    while (!rightNumber)
+                    {
+                        Console.Write($"Ход {playerOneName}: ");
+                        userTry = Convert.ToInt32(Console.ReadLine());
+                        if ((userTry < 1) || (userTry > 4))
+                        {
+                            Console.WriteLine("Неверное число!");
+                        }
+                        else rightNumber = true;
+                    }
+
+                    gameNumber -= userTry;
+                    playerNumber = 2;
+                } else
+                {
+                    Console.WriteLine($"\nЧисло: {gameNumber}");
+                    int userTry;
+                    Console.Write($"Ход {playerTwoName}: ");
+                    userTry = Convert.ToInt32(Console.ReadLine());
+                    gameNumber -= userTry;
+                    playerNumber = 1;
+                }
+            }
+
+            if (playerNumber == 1)
+            {
+                Console.WriteLine($"\n{playerTwoName} победил!");
+            } else
+            {
+                Console.WriteLine($"\n{playerOneName} победил!");
+            }
+        }
+
+        /// <summary>
+        /// Код бонусной игры
+        /// </summary>
+        static void BonusGame()
+        {
+
+        }
+
+        /// <summary>
+        /// Код однопользовательской игры
+        /// </summary>
+        static void SinglePlayerGame()
+        {
 
         }
     }
