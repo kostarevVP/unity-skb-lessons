@@ -81,7 +81,7 @@ namespace Homework_Theme_03
             //CustomGame();
 
             // Задание 3.
-            SinglePlayerGame();
+            //SinglePlayerGame();
 
             Console.ReadKey();
         }
