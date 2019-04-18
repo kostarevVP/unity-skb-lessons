@@ -75,10 +75,10 @@ namespace Homework_Theme_03
             Console.WriteLine("Вас приветсвует игра \"Обнули число!\"\n");
 
             // Задание 1.
-            SimpleGame();
+            //SimpleGame();
 
             // Задание 2.
-            //BonusGame();
+            BonusGame();
 
             // Задание 3.
             //SinglePlayerGame();
@@ -107,7 +107,7 @@ namespace Homework_Theme_03
             int gameNumber = randomize.Next(12, 121); // загаданное случайное число
 
             Console.WriteLine("\nОтлично! Вам необходимо обнулить задуманное игрой число,");
-            Console.WriteLine(" последовательно вычитая из него целые числа в диапазоне от 1 до 4.");
+            Console.WriteLine("последовательно вычитая из него целые числа в диапазоне от 1 до 4.");
 
             int playerNumber = 1; // номер ходящего игрока
 
@@ -158,7 +158,72 @@ namespace Homework_Theme_03
         /// </summary>
         static void BonusGame()
         {
+            // Настройки сложности игры
+            Console.WriteLine("Определите настройки сложности игры");
 
+            Console.Write("Введите число игроков: ");
+            int playersNumber = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("\nОпределите диапазон загадываемого игрой числа");
+            Console.Write("Введите минимальную границу: ");
+            int minGameNumber = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите максимальную границу: ");
+            int maxGameNumber = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("\nОпределите диапазон вводимых игроками чисел");
+            Console.Write("Введите минимальную границу: ");
+            int minUserTry = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите максимальную границу: ");
+            int maxUserTry = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("\nНастройки закончены! Переходим к игре");
+
+            // Добавляем имена игроков
+            string[] players = new string[playersNumber]; // массив с именами игроков
+            for (int i = 0; i < playersNumber; i++)
+            {
+                Console.WriteLine($"Введите имя {i + 1}-го игрока:");
+                players[i] = Console.ReadLine();
+            }
+
+            // Ход игры
+            Random randomize = new Random(); // переменная для получения псевдослучайных чисел
+            int gameNumber = randomize.Next(minGameNumber, maxGameNumber); // загаданное случайное число
+
+            Console.WriteLine("\nОтлично! Вам необходимо обнулить задуманное игрой число,");
+            Console.WriteLine($"последовательно вычитая из него целые числа в диапазоне от {minUserTry} до {maxUserTry}.");
+
+            int playerNumber = 0; // номер ходящего игрока
+
+            while (gameNumber > 0) // процесс игры
+            {
+                playerNumber = 0;
+                for (; playerNumber < playersNumber; playerNumber++)
+                {
+                    if (gameNumber <= 0) break;
+
+                    Console.WriteLine($"\nЧисло: {gameNumber}");
+                    int userTry = 0;
+
+                    bool rightNumber = false; // проверка на попадание введенного числа в диапазон условия задачи
+                    while (!rightNumber)
+                    {
+                        Console.Write($"Ход {players[playerNumber]}: ");
+                        userTry = Convert.ToInt32(Console.ReadLine());
+                        if ((userTry < minUserTry) || (userTry > maxUserTry))
+                        {
+                            Console.WriteLine("Неверное число!");
+                        }
+                        else rightNumber = true;
+                    }
+
+                    gameNumber -= userTry;
+                }
+            }
+
+            Console.WriteLine($"\n{players[playerNumber - 1]} победил!");
         }
 
         /// <summary>
