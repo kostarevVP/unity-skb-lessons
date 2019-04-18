@@ -78,7 +78,7 @@ namespace Homework_Theme_03
             //SimpleGame();
 
             // Задание 2.
-            BonusGame();
+            CustomGame();
 
             // Задание 3.
             //SinglePlayerGame();
@@ -95,7 +95,21 @@ namespace Homework_Theme_03
         /// </summary>
         static void SimpleGame()
         {
-            string playerOneName; // имя первого игрока
+            int playersNumber = 2;
+        
+            int minGameNumber = 12;
+
+            int maxGameNumber = 120;
+
+            int minUserTry = 1;
+
+            int maxUserTry = 4;
+
+            // общий алгоритм игры вынесен в отдельную функцию
+            Game(playersNumber, minGameNumber, maxGameNumber, minUserTry, maxUserTry);
+
+            #region Первоначальный вариант строго для заданных условий
+            /* string playerOneName; // имя первого игрока
             Console.WriteLine("Введите имя первого игрока:");
             playerOneName = Console.ReadLine();
 
@@ -150,13 +164,14 @@ namespace Homework_Theme_03
             } else
             {
                 Console.WriteLine($"\n{playerOneName} победил!");
-            }
+            } */
+            #endregion
         }
 
         /// <summary>
         /// Код бонусной игры
         /// </summary>
-        static void BonusGame()
+        static void CustomGame()
         {
             // Настройки сложности игры
             Console.WriteLine("Определите настройки сложности игры");
@@ -178,8 +193,14 @@ namespace Homework_Theme_03
             Console.Write("Введите максимальную границу: ");
             int maxUserTry = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("\nНастройки закончены! Переходим к игре");
+            Console.WriteLine("\nНастройки закончены! Переходим к игре\n");
 
+            // общий алгоритм игры вынесен в отдельную функцию
+            Game(playersNumber, minGameNumber, maxGameNumber, minUserTry, maxUserTry);
+        }
+
+        static void Game(int playersNumber, int minGameNumber, int maxGameNumber, int minUserTry, int maxUserTry)
+        {
             // Добавляем имена игроков
             string[] players = new string[playersNumber]; // массив с именами игроков
             for (int i = 0; i < playersNumber; i++)
