@@ -78,14 +78,10 @@ namespace Homework_Theme_03
             //SimpleGame();
 
             // Задание 2.
-            CustomGame();
+            //CustomGame();
 
             // Задание 3.
-            //SinglePlayerGame();
-
-            
-
-            
+            SinglePlayerGame();
 
             Console.ReadKey();
         }
@@ -125,7 +121,6 @@ namespace Homework_Theme_03
 
             int playerNumber = 1; // номер ходящего игрока
 
-            //gameNumber = 10;
             while (gameNumber > 0) // процесс игры
             {
                 if (playerNumber == 1) // если ход первого игрока
@@ -231,7 +226,7 @@ namespace Homework_Theme_03
                     bool rightNumber = false; // проверка на попадание введенного числа в диапазон условия задачи
                     while (!rightNumber)
                     {
-                        Console.Write($"Ход {players[playerNumber]}: ");
+                        Console.Write($"Ходит {players[playerNumber]}: ");
                         userTry = Convert.ToInt32(Console.ReadLine());
                         if ((userTry < minUserTry) || (userTry > maxUserTry))
                         {
@@ -252,7 +247,83 @@ namespace Homework_Theme_03
         /// </summary>
         static void SinglePlayerGame()
         {
+            Console.WriteLine("Вы играете с Компьютером\n");
+            // Настройки сложности игры
+            Console.WriteLine("Определите настройки сложности игры");
 
+            Console.WriteLine("\nОпределите диапазон загадываемого игрой числа");
+            Console.Write("Введите минимальную границу: ");
+            int minGameNumber = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите максимальную границу: ");
+            int maxGameNumber = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("\nОпределите диапазон вводимых игроками чисел");
+            Console.Write("Введите минимальную границу: ");
+            int minUserTry = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите максимальную границу: ");
+            int maxUserTry = Convert.ToInt32(Console.ReadLine());
+
+            string[] players = new string[2]; // массив с именами игроков
+            Console.WriteLine("\nВведите имя игрока:");
+            players[0] = Console.ReadLine();
+            players[1] = "Увы, Компьютер";
+
+            // Ход игры
+            Random randomize = new Random(); // переменная для получения псевдослучайных чисел
+            int gameNumber = randomize.Next(minGameNumber, maxGameNumber); // загаданное случайное число
+
+            Console.WriteLine("\nОтлично! Вам необходимо обнулить задуманное игрой число,");
+            Console.WriteLine($"последовательно вычитая из него целые числа в диапазоне от {minUserTry} до {maxUserTry}\n");
+
+            int playerNumber = 1; // номер ходящего игрока
+
+            while (gameNumber > 0) // процесс игры
+            {
+                Console.WriteLine($"Число: {gameNumber}");
+
+                if (playerNumber == 1) // если ход первого игрока
+                {
+                    int userTry = 0;
+
+                    bool rightNumber = false; // проверка на попадание введенного числа в диапазон условия задачи
+                    while (!rightNumber)
+                    {
+                        Console.Write($"Ходит {players[0]}: ");
+                        userTry = Convert.ToInt32(Console.ReadLine());
+                        if ((userTry < minUserTry) || (userTry > maxUserTry))
+                        {
+                            Console.WriteLine("Неверное число!");
+                        }
+                        else rightNumber = true;
+                    }
+
+                    Console.WriteLine();
+                    gameNumber -= userTry;
+                    playerNumber = 0;
+                }
+                else // ход Компьютера
+                {
+                    int userTry;
+
+                    if (gameNumber <= maxUserTry)
+                    {
+                        userTry = gameNumber;
+                        gameNumber = 0;
+                    } else
+                    {
+                        userTry = new Random().Next(minUserTry, maxUserTry + 1);
+                        gameNumber -= userTry;
+                    }
+
+                    Console.WriteLine($"Ходит Компьютер: {userTry}\n");
+
+                    playerNumber = 1;
+                }
+            }
+            
+            Console.WriteLine($"{players[playerNumber]} победил!");
         }
     }
 }
