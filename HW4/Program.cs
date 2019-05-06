@@ -43,9 +43,6 @@ namespace Homework_Theme_04
             // Месяцев с положительной прибылью: 10
             #endregion
 
-            // Задание 1.
-            FinanceAccounting();
-
             #region Задание 2
             // * Задание 2
             // Заказчику требуется приложение строящее первых N строк треугольника паскаля. N < 25
@@ -135,6 +132,13 @@ namespace Homework_Theme_04
             //
             #endregion
 
+            // Задание 1.
+            //FinanceAccounting();
+
+            // Задание 2.
+            MakePascalsTriangle();
+
+
             Console.ReadKey();
         }
 
@@ -220,6 +224,61 @@ namespace Homework_Theme_04
             }
 
             Console.WriteLine($"\nМесяцев с положительной прибылью: {positiveProfit}");
+        }
+
+        /// <summary>
+        /// Функция вывода первых N строк треугольника паскаля
+        /// </summary>
+        static void MakePascalsTriangle()
+        {
+            int n = 1;
+            Console.WriteLine("Введите желаемое количество строк треугольника < 25");
+
+            // проверка на корректность ввода
+            bool check = false;
+            while (!check)
+            {
+                n = Convert.ToInt32(Console.ReadLine());
+                if ((n > 24) || (n < 1)) {
+                    Console.WriteLine("Недопустимое число, повторите ввод");
+                } else
+                {
+                    check = true;
+                }
+            }
+
+            // вывод
+            Console.WriteLine("Вывод треугольника Паскаля:");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j <= (n - i); j++)
+                {
+                    Console.Write("    ");
+                }
+
+                for (int j = 0; j <= i; j++)
+                {
+                    Console.Write("{0, 8:0}", Factorial(i) / (Factorial(j) * Factorial(i - j)));
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Функция вычисления факториала
+        /// </summary>
+        /// <param name="n">Число факториала</param>
+        /// <returns>Результат вычисления</returns>
+        public static float Factorial(int n)
+        {
+            float result = 1;
+            for (int i = 1; i <= n; i++)
+            {
+                result *= i;
+            }
+
+            return result;
         }
     }
 }
