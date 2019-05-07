@@ -139,10 +139,10 @@ namespace Homework_Theme_04
             //MakePascalsTriangle();
 
             // Задание 3.1.
-            MatrixMultiplicationByNumber();
+            //MatrixMultiplicationByNumber();
 
             // Задание 3.2.
-            //MatrixAddition();
+            MatrixAddition();
 
             // Задание 3.3.
 
@@ -354,7 +354,6 @@ namespace Homework_Theme_04
 
                 Console.WriteLine();
             }
-
         }
 
         /// <summary>
@@ -380,6 +379,50 @@ namespace Homework_Theme_04
             return n;
         }
 
+        /// <summary>
+        /// Функция вывода результата сложения матриц
+        /// </summary>
+        static void MatrixAddition()
+        {
+            Console.WriteLine("Введите число строк матрицы от 1 до 1000000:");
+            int n = EnterValidNumber();
 
+            Console.WriteLine("\nВведите число столбцов матрицы от 1 до 1000000:");
+            int m = EnterValidNumber();
+
+            Random rand = new Random();
+
+            Console.WriteLine("\nРезультат вычислений:");
+            // вывод примера в консоль
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write("  |");
+
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write($"{rand.Next(-9, 10),3}");
+                }
+
+                Console.Write("  |");
+
+                if (i == (n - 1) / 2)
+                {
+                    Console.Write(" = |");
+                }
+                else
+                {
+                    Console.Write("{0,4}", "|");
+                }
+
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write($"{rand.Next(-9, 10) * number,9}");
+                }
+
+                Console.Write("  |");
+
+                Console.WriteLine();
+            }
+        }
     }
 }
