@@ -136,8 +136,10 @@ namespace Homework_Theme_04
             //FinanceAccounting();
 
             // Задание 2.
-            MakePascalsTriangle();
+            //MakePascalsTriangle();
 
+            // Задание 3.1.
+            MatrixMultiplicationByNumber();
 
             Console.ReadKey();
         }
@@ -279,6 +281,108 @@ namespace Homework_Theme_04
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Функция вывода умножения матрицы на число
+        /// </summary>
+        static void MatrixMultiplicationByNumber()
+        {
+            Console.WriteLine("Введите число строк матрицы от 1 до 1000000:");
+            int n = EnterValidNumber();
+
+            Console.WriteLine("\nВведите число столбцов матрицы от 1 до 1000000:");
+            int m = EnterValidNumber();
+
+            Console.WriteLine("\nВведите число, на которое будет производиться умножение, значением от -1000000 до 1000000:");
+            bool check = false;
+            int number = 1;
+            while (!check)
+            {
+                number = Convert.ToInt32(Console.ReadLine());
+                if ((n < -1000000) || (n > 1000000))
+                {
+                    Console.WriteLine("Неверный ввод числа, повторите!");
+                }
+                else
+                {
+                    check = true;
+                }
+            }
+            
+            Random rand = new Random();
+            int[,] matrix = new int[n, m];
+
+            // генерация данных матрицы
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    matrix[i, j] = rand.Next(-9, 10);
+                }
+            }
+
+            Console.WriteLine("\nРезультат вычислений:");
+            // вывод примера в консоль
+            for (int i = 0; i < n; i++)
+            {
+                if (i == (n - 1) / 2)
+                {
+                    Console.Write($"{number, 9} х |");
+                } else
+                {
+                    Console.Write("{0,13}","|");
+                }
+
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write($"{matrix[i,j],3}");
+                }
+
+                Console.Write("  |");
+
+                if (i == (n - 1) / 2)
+                {
+                    Console.Write(" = |");
+                }
+                else
+                {
+                    Console.Write("{0,4}", "|");
+                }
+
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write($"{matrix[i, j] * number,9}");
+                }
+
+                Console.Write("  |");
+
+                Console.WriteLine();
+            }
+
+        }
+
+        /// <summary>
+        /// Функция ввода числа в указанном диапазоне
+        /// </summary>
+        /// <returns>Введенное из консоли число</returns>
+        static int EnterValidNumber()
+        {
+            bool check = false;
+            int n = 1;
+            while (!check)
+            {
+                n = Convert.ToInt32(Console.ReadLine());
+                if ((n < 1) || (n > 1000000))
+                {
+                    Console.WriteLine("Неверный ввод числа, повторите!");
+                } else
+                {
+                    check = true;
+                }
+            }
+
+            return n;
         }
     }
 }
