@@ -316,6 +316,16 @@ namespace Homework_Theme_04
             }
             
             Random rand = new Random();
+            int[,] matrix = new int[n, m];
+
+            // генерация данных матрицы
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    matrix[i, j] = rand.Next(-9, 10);
+                }
+            }
 
             Console.WriteLine("\nРезультат вычислений:");
             // вывод примера в консоль
@@ -331,7 +341,7 @@ namespace Homework_Theme_04
 
                 for (int j = 0; j < m; j++)
                 {
-                    Console.Write($"{rand.Next(-9, 10),3}");
+                    Console.Write($"{matrix[i,j],3}");
                 }
 
                 Console.Write("  |");
@@ -347,7 +357,7 @@ namespace Homework_Theme_04
 
                 for (int j = 0; j < m; j++)
                 {
-                    Console.Write($"{rand.Next(-9, 10) * number,9}");
+                    Console.Write($"{matrix[i, j] * number,9}");
                 }
 
                 Console.Write("  |");
@@ -380,7 +390,7 @@ namespace Homework_Theme_04
         }
 
         /// <summary>
-        /// Функция вывода результата сложения матриц
+        /// Функция вывода результата сложения двух матриц
         /// </summary>
         static void MatrixAddition()
         {
@@ -391,6 +401,18 @@ namespace Homework_Theme_04
             int m = EnterValidNumber();
 
             Random rand = new Random();
+            int[,] firstMatrix = new int[n, m];
+            int[,] secondMatrix = new int[n, m];
+
+            // генерация данных матриц
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    firstMatrix[i, j] = rand.Next(-1000, 1001);
+                    secondMatrix[i, j] = rand.Next(-1000, 1001);
+                }
+            }
 
             Console.WriteLine("\nРезультат вычислений:");
             // вывод примера в консоль
@@ -400,7 +422,23 @@ namespace Homework_Theme_04
 
                 for (int j = 0; j < m; j++)
                 {
-                    Console.Write($"{rand.Next(-9, 10),3}");
+                    Console.Write($"{firstMatrix[i, j],5}");
+                }
+
+                Console.Write("  |");
+
+                if (i == (n - 1) / 2)
+                {
+                    Console.Write(" + |");
+                }
+                else
+                {
+                    Console.Write("{0,4}", "|");
+                }
+
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write($"{secondMatrix[i, j],5}");
                 }
 
                 Console.Write("  |");
@@ -416,7 +454,7 @@ namespace Homework_Theme_04
 
                 for (int j = 0; j < m; j++)
                 {
-                    Console.Write($"{rand.Next(-9, 10) * number,9}");
+                    Console.Write($"{firstMatrix[i, j] + secondMatrix[i, j],5}");
                 }
 
                 Console.Write("  |");
