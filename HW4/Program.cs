@@ -141,6 +141,11 @@ namespace Homework_Theme_04
             // Задание 3.1.
             MatrixMultiplicationByNumber();
 
+            // Задание 3.2.
+            //MatrixAddition();
+
+            // Задание 3.3.
+
             Console.ReadKey();
         }
 
@@ -311,16 +316,6 @@ namespace Homework_Theme_04
             }
             
             Random rand = new Random();
-            int[,] matrix = new int[n, m];
-
-            // генерация данных матрицы
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    matrix[i, j] = rand.Next(-9, 10);
-                }
-            }
 
             Console.WriteLine("\nРезультат вычислений:");
             // вывод примера в консоль
@@ -336,7 +331,7 @@ namespace Homework_Theme_04
 
                 for (int j = 0; j < m; j++)
                 {
-                    Console.Write($"{matrix[i,j],3}");
+                    Console.Write($"{rand.Next(-9, 10),3}");
                 }
 
                 Console.Write("  |");
@@ -352,7 +347,7 @@ namespace Homework_Theme_04
 
                 for (int j = 0; j < m; j++)
                 {
-                    Console.Write($"{matrix[i, j] * number,9}");
+                    Console.Write($"{rand.Next(-9, 10) * number,9}");
                 }
 
                 Console.Write("  |");
@@ -384,5 +379,7 @@ namespace Homework_Theme_04
 
             return n;
         }
+
+
     }
 }
