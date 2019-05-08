@@ -142,9 +142,10 @@ namespace Homework_Theme_04
             //MatrixMultiplicationByNumber();
 
             // Задание 3.2.
-            MatrixAddition();
+            //MatrixAddition();
 
             // Задание 3.3.
+            //MatrixMultiplication();
 
             Console.ReadKey();
         }
@@ -459,6 +460,116 @@ namespace Homework_Theme_04
 
                 Console.Write("  |");
 
+                Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Функция вывода результата перемножения двух матриц
+        /// </summary>
+        static void MatrixMultiplication()
+        {
+            Console.WriteLine("Введите число строк первой матрицы от 1 до 1000000:");
+            int n = EnterValidNumber();
+
+            Console.WriteLine("\nВведите число столбцов первой матрицы от 1 до 1000000, оно же число строк второй матрицы:");
+            int m = EnterValidNumber();
+
+            Console.WriteLine("\nВведите число столбцов второй матрицы от 1 до 1000000:");
+            int k = EnterValidNumber();
+
+            Random rand = new Random();
+            int[,] firstMatrix = new int[n, m];
+            int[,] secondMatrix = new int[m, k];
+            int[,] newMatrix = new int[n, k];
+
+            // генерация данных матриц
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    firstMatrix[i, j] = rand.Next(-9, 10);
+                }
+            }
+
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    secondMatrix[i, j] = rand.Next(-9, 10);
+                }
+            }
+
+            // подсчет значений финальной матрицы
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    newMatrix[i, j] = 0;
+                    for (int l = 0; l < m; l++)
+                    {
+                        newMatrix[i, j] += firstMatrix[i, l] * secondMatrix[l, j];
+                    }
+
+                }
+            }
+
+
+            Console.WriteLine("\nРезультат вычислений:");
+
+            int line = (n > m) ? n : m; // количество строк вывода
+            int column = m + k * 2 + 8; // количество столбцов вывода
+            string[,] outputMatrix = new string[line, column]; // общая матрица вывода
+
+            // инициализация матрицы вывода
+            for (int i = 0; i < line; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    outputMatrix[i, j] = "";
+                }
+            }
+
+            // заполнение матрицы вывода данными из первой и финальной матриц
+            for (int i = 0; i < n; i++)
+            {
+                outputMatrix[i, 0] = "|";
+                outputMatrix[i, m + 1] = "|";
+                outputMatrix[i, m + k + 6] = "|";
+                outputMatrix[i, column - 1] = "|";
+                
+                for (int j = 0; j < m; j++)
+                {
+                    outputMatrix[i, j + 1] = firstMatrix[i, j].ToString();
+                }
+
+                for (int j = 0; j < k; j++)
+                {
+                    outputMatrix[i, j + (m + k + 7)] = newMatrix[i, j].ToString();
+                }
+            }
+
+            // заполнение матрицы вывода данными из второй матрицы
+            for (int i = 0; i < m; i++)
+            {
+                outputMatrix[i, m + 3] = "|";
+                outputMatrix[i, m + k + 4] = "|";
+                for (int j = 0; j < k; j++)
+                {
+                    outputMatrix[i, j + m + 4] = secondMatrix[i, j].ToString();
+                }
+            }
+
+            outputMatrix[0, m + 2] = "х";
+            outputMatrix[0, m + k + 5] = "=";
+
+            // вывод данных на экран
+            for (int i = 0; i < line; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    Console.Write("{0,5}", outputMatrix[i, j]);
+                }
                 Console.WriteLine();
             }
         }
