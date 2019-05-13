@@ -133,7 +133,7 @@ namespace Homework_Theme_04
             #endregion
 
             // Задание 1.
-            //FinanceAccounting();
+            FinanceAccounting();
 
             // Задание 2.
             //MakePascalsTriangle();
@@ -205,10 +205,11 @@ namespace Homework_Theme_04
                 }
             }
 
-            for (int i = 0; i < n; i++)
+            /*for (int i = 0; i < n; i++)
             {
-                Console.WriteLine(worstProfit[0,i] + " " + worstProfit[1, i]);
-            }
+                Console.WriteLine(worstProfit[0, i] + " " + worstProfit[1, i]);
+            }*/
+
             // вывод таблицы доходов, расходов и прибыли
             string pattern = "{0,5} {1,20} {2,20} {3,20}";
             Console.WriteLine(pattern, "Месяц", "Доход, тыс. руб.", "Расход, тыс. руб.", "Прибыль, тыс. руб.");
@@ -218,17 +219,19 @@ namespace Homework_Theme_04
             }
 
             //вывод данных о худшей прибыли
-            Console.Write($"Худшая прибыль в месяцах: {worstProfit[0, 0]}");
+            Console.Write($"\nХудшая прибыль в месяцах: {worstProfit[0, 0]}");
             int worstCount = 1;
             int counter = 1;
-            while ((worstCount < 4) && (counter < n))
+
+            for (; counter < n; counter++)
             {
-                Console.Write($", {worstProfit[0, counter]}");
                 if (worstProfit[1, counter] != worstProfit[1, counter - 1])
                 {
                     worstCount++;
                 }
-                counter++;
+
+                if (worstCount > 3) break;
+                Console.Write($", {worstProfit[0, counter]}");
             }
 
             Console.WriteLine($"\nМесяцев с положительной прибылью: {positiveProfit}");
