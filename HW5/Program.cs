@@ -15,10 +15,10 @@ namespace Homework_theme_05
             //MatrixMultiplicationByNumberOperate();
 
             // 1.2. Создать метод, принимающий две матрицы, возвращающий их сумму
-            MatrixAdditionOperate();
+            //MatrixAdditionOperate();
 
             // 1.3. Создать метод, принимающий две матрицы, возвращающий их произведение
-            //MatrixMultiplicationOperate();
+            MatrixMultiplicationOperate();
 
             // Задание 2.
             // 1. Создать метод, принимающий  текст и возвращающий слово, содержащее минимальное количество букв
@@ -266,7 +266,7 @@ namespace Homework_theme_05
         /// <param name="secondMatrix">Вторая слагаемая матрица</param>
         /// <param name="n">Число строк матрицы</param>
         /// <param name="m">Число столбцов матрицы</param>
-        /// <returns>результат сложения</returns>
+        /// <returns>Результат сложения</returns>
         static int[,] MatrixAddition(int[,] firstMatrix, int[,] secondMatrix, int n, int m)
         {
             int[,] newMatrix = new int[n, m];
@@ -285,7 +285,7 @@ namespace Homework_theme_05
         /// <summary>
         /// Функция вывода результата перемножения двух матриц
         /// </summary>
-        static void MatrixMultiplication()
+        static void MatrixMultiplicationOperate()
         {
             Console.WriteLine("Введите число строк первой матрицы от 1 до 1000000:");
             int n = EnterValidNumber();
@@ -299,7 +299,6 @@ namespace Homework_theme_05
             Random rand = new Random();
             int[,] firstMatrix = new int[n, m];
             int[,] secondMatrix = new int[m, k];
-            int[,] newMatrix = new int[n, k];
 
             // генерация данных матриц
             for (int i = 0; i < n; i++)
@@ -319,19 +318,7 @@ namespace Homework_theme_05
             }
 
             // подсчет значений финальной матрицы
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < k; j++)
-                {
-                    newMatrix[i, j] = 0;
-                    for (int l = 0; l < m; l++)
-                    {
-                        newMatrix[i, j] += firstMatrix[i, l] * secondMatrix[l, j];
-                    }
-
-                }
-            }
-
+            int[,] newMatrix = MatrixMultiplication(firstMatrix, secondMatrix, n, m, k);
 
             Console.WriteLine("\nРезультат вычислений:");
 
@@ -390,6 +377,35 @@ namespace Homework_theme_05
                 }
                 Console.WriteLine();
             }
+        }
+
+        /// <summary>
+        /// Функция подсчета произведения матриц
+        /// </summary>
+        /// <param name="firstMatrix">Первая матрица</param>
+        /// <param name="secondMatrix">Вторая матрица</param>
+        /// <param name="n">Число строк первой матрицы</param>
+        /// <param name="m">Число столбцов первой матрицы</param>
+        /// <param name="k">Число столбцов второй матрицы</param>
+        /// <returns>Результат произведения матриц</returns>
+        static int[,] MatrixMultiplication(int[,] firstMatrix, int[,] secondMatrix, int n, int m, int k)
+        {
+            int[,] newMatrix = new int[n, k];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < k; j++)
+                {
+                    newMatrix[i, j] = 0;
+                    for (int l = 0; l < m; l++)
+                    {
+                        newMatrix[i, j] += firstMatrix[i, l] * secondMatrix[l, j];
+                    }
+
+                }
+            }
+
+            return newMatrix;
         }
     }
 }
