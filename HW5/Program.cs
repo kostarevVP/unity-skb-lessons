@@ -18,10 +18,11 @@ namespace Homework_theme_05
             //MatrixAdditionOperate();
 
             // 1.3. Создать метод, принимающий две матрицы, возвращающий их произведение
-            MatrixMultiplicationOperate();
+            //MatrixMultiplicationOperate();
 
             // Задание 2.
             // 1. Создать метод, принимающий  текст и возвращающий слово, содержащее минимальное количество букв
+            MinWordFinderOperate();
             // 2.* Создать метод, принимающий  текст и возвращающий слово(слова) с максимальным количеством букв 
             // Примечание: слова в тексте могут быть разделены символами (пробелом, точкой, запятой) 
             // Пример: Текст: "A ББ ВВВ ГГГГ ДДДД  ДД ЕЕ ЖЖ ЗЗЗ"
@@ -181,7 +182,6 @@ namespace Homework_theme_05
 
             return newMatrix;
         }
-
 
         /// <summary>
         /// Функция вывода результата сложения двух матриц
@@ -406,6 +406,59 @@ namespace Homework_theme_05
             }
 
             return newMatrix;
+        }
+
+        /// <summary>
+        /// Функция, обрабатывающая ввод текста и вывод результата для поиска минимального слова
+        /// </summary>
+        static void MinWordFinderOperate()
+        {
+            Console.WriteLine("Введите текст:");
+
+            string text = Console.ReadLine();
+
+            string findWord = MinWordFinder(text);
+
+            Console.WriteLine($"\nМинимальное слово в тексте: {findWord}");
+        }
+
+        /// <summary>
+        /// Функция для нахождения минимального слова в тексте
+        /// </summary>
+        /// <param name="text">Исходный текст</param>
+        /// <returns>Минимальное слово</returns>
+        static string MinWordFinder(string text)
+        {
+            string minWord = text;
+            string word = "";
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (((text[i] >= 'а') && (text[i] <= 'я')) || ((text[i] >= 'А') && (text[i] <= 'Я')) ||
+                    ((text[i] >= 'a') && (text[i] <= 'z')) || ((text[i] >= 'A') && (text[i] <= 'Z')) ||
+                    ((text[i] >= '0') && (text[i] <= '9')))
+                {
+                    word += text[i];
+                    if (i == text.Length - 1)
+                    {
+                        if ((minWord.Length > word.Length) && (word.Length > 0))
+                        {
+                            minWord = word;
+                        }
+                    }
+                } else
+                {
+                    //Console.WriteLine(i + " " + word);
+                    if ((minWord.Length > word.Length) && (word.Length > 0))
+                    {
+                        minWord = word;
+                    }
+
+                    word = "";
+                }
+            }
+
+            return minWord;
         }
     }
 }
