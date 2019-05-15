@@ -12,6 +12,7 @@ namespace Homework_theme_05
             // Задание 1.
             // Воспользовавшись решением задания 3 четвертого модуля
             // 1.1. Создать метод, принимающий число и матрицу, возвращающий матрицу умноженную на число
+
             //MatrixMultiplicationByNumberOperate();
 
             // 1.2. Создать метод, принимающий две матрицы, возвращающий их сумму
@@ -52,7 +53,7 @@ namespace Homework_theme_05
             //             http://ru.wikipedia.org/wiki/Геометрическая_прогрессия
             //
 
-            CheckProgressionTypeOperate();
+            //CheckProgressionTypeOperate();
 
             // *Задание 5
             // Вычислить, используя рекурсию, функцию Аккермана:
@@ -61,6 +62,9 @@ namespace Homework_theme_05
             //         = A(n - 1, 1), если n <> 0, m = 0,
             //         = A(n - 1, A(n, m - 1)), если n> 0, m > 0.
             // 
+
+            //AckermannCountOperate();
+
             // Весь код должен быть откоммментирован
             #endregion
 
@@ -683,6 +687,37 @@ namespace Homework_theme_05
             }
 
             return numbersArray;
+        }
+
+        /// <summary>
+        /// Функция, обрабатывающая ввод текста и вывод результата для вычисления функции Аккермана
+        /// </summary>
+        static void AckermannCountOperate()
+        {
+            Console.WriteLine("Введите два числа через enter:");
+
+            int n = Convert.ToInt32(Console.ReadLine());
+            int m = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"Ответ: {AckermannCount(n, m)}");
+        }
+
+        /// <summary>
+        /// Вычисление функции Аккермана
+        /// </summary>
+        /// <param name="n">Первое число</param>
+        /// <param name="m">Второе число</param>
+        /// <returns>Результат вычисления функции</returns>
+        static int AckermannCount(int n, int m)
+        {
+            if ((n > 0) && (m == 0))
+            {
+                return AckermannCount(n - 1, 1);
+            }
+            else if ((n > 0) && (m > 0))
+            {
+                return AckermannCount(n - 1, AckermannCount(n, m - 1));
+            } else return (m + 1);
         }
     }
 }
