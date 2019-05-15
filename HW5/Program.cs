@@ -27,8 +27,10 @@ namespace Homework_theme_05
 
             //MinWordFinderOperate();
 
-            // 2.* Создать метод, принимающий  текст и возвращающий слово(слова) с максимальным количеством букв 
-            MaxWordsFinderOperate();
+            // 2.* Создать метод, принимающий  текст и возвращающий слово(слова) с максимальным количеством букв
+
+            //MaxWordsFinderOperate();
+
             // Примечание: слова в тексте могут быть разделены символами (пробелом, точкой, запятой) 
             // Пример: Текст: "A ББ ВВВ ГГГГ ДДДД  ДД ЕЕ ЖЖ ЗЗЗ"
             // 1. Ответ: А
@@ -39,7 +41,9 @@ namespace Homework_theme_05
             // удалены все кратные рядом стоящие символы, оставив по одному 
             // Пример: ПППОООГГГООООДДДААА >>> ПОГОДА
             // Пример: Ххххоооорррооошшшиий деееннннь >>> хороший день
-            // 
+
+            RemoveRepeatedLettersOperate();
+
             // Задание 4. Написать метод принимающий некоторое количесво чисел, выяснить
             // является заданная последовательность элементами арифметической или геометрической прогрессии
             // 
@@ -543,6 +547,40 @@ namespace Homework_theme_05
             Array.Copy(words, maxWords, wordsCount + 1);
             //Console.WriteLine(wordsCount);
             return maxWords;
+        }
+
+        /// <summary>
+        /// Функция, обрабатывающая ввод текста и вывод результата для удаления кратных рядом стоящих символов в тексте
+        /// </summary>
+        static void RemoveRepeatedLettersOperate()
+        {
+            Console.WriteLine("Введите текст:");
+
+            string text = Console.ReadLine();
+
+            string newText = RemoveRepeatedLetters(text);
+
+            Console.WriteLine("Новый текст:");
+            Console.WriteLine(newText);
+        }
+
+        /// <summary>
+        /// Функция для удаления кратных рядом стоящих символов в тексте
+        /// </summary>
+        /// <param name="text">Исходный текст</param>
+        /// <returns>Измененный текст</returns>
+        static string RemoveRepeatedLetters(string text)
+        {
+            string newText = "";
+            newText += text[0];
+            string lowerText = text.ToLower();
+
+            for (int i = 1; i < text.Length; i++)
+            {
+                if (lowerText[i] != lowerText[i - 1]) newText += text[i];
+            }
+
+            return newText;
         }
     }
 }
