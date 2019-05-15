@@ -15,15 +15,20 @@ namespace Homework_theme_05
             //MatrixMultiplicationByNumberOperate();
 
             // 1.2. Создать метод, принимающий две матрицы, возвращающий их сумму
+
             //MatrixAdditionOperate();
 
             // 1.3. Создать метод, принимающий две матрицы, возвращающий их произведение
+
             //MatrixMultiplicationOperate();
 
             // Задание 2.
             // 1. Создать метод, принимающий  текст и возвращающий слово, содержащее минимальное количество букв
-            MinWordFinderOperate();
+
+            //MinWordFinderOperate();
+
             // 2.* Создать метод, принимающий  текст и возвращающий слово(слова) с максимальным количеством букв 
+            MaxWordsFinderOperate();
             // Примечание: слова в тексте могут быть разделены символами (пробелом, точкой, запятой) 
             // Пример: Текст: "A ББ ВВВ ГГГГ ДДДД  ДД ЕЕ ЖЖ ЗЗЗ"
             // 1. Ответ: А
@@ -459,6 +464,85 @@ namespace Homework_theme_05
             }
 
             return minWord;
+        }
+
+        /// <summary>
+        /// Функция, обрабатывающая ввод текста и вывод результата для поиска максимальных слов
+        /// </summary>
+        static void MaxWordsFinderOperate()
+        {
+            Console.WriteLine("Введите текст:");
+
+            string text = Console.ReadLine();
+
+            string[] findWords = MaxWordsFinder(text);
+
+            Console.WriteLine($"\nМаксимальные слова в тексте:");
+            Console.Write($"{findWords[0]}");
+            for (int i = 1; i < findWords.Length; i++)
+            {
+                if (findWords[i] == "") break;
+                Console.Write($", {findWords[i]}");
+            }
+        }
+
+        /// <summary>
+        /// Функция для нахождения максимальных слов в тексте
+        /// </summary>
+        /// <param name="text">Исходный текст</param>
+        /// <returns>Список максимальных слов</returns>
+        static string[] MaxWordsFinder(string text)
+        {
+            string[] words = new string[text.Length / 2 + 1];
+            string word = "";
+            int wordsCount = 0;
+            int maxWordLength = 0;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (((text[i] >= 'а') && (text[i] <= 'я')) || ((text[i] >= 'А') && (text[i] <= 'Я')) ||
+                    ((text[i] >= 'a') && (text[i] <= 'z')) || ((text[i] >= 'A') && (text[i] <= 'Z')) ||
+                    ((text[i] >= '0') && (text[i] <= '9')))
+                {
+                    word += text[i];
+                    if (i == text.Length - 1)
+                    {
+                        if (word.Length > maxWordLength)
+                        {
+                            wordsCount = 0;
+                            Array.Clear(words, 0, words.Length);
+                            words[wordsCount] = word;
+                        }
+                        else if (word.Length == maxWordLength)
+                        {
+                            wordsCount++;
+                            words[wordsCount] = word;
+                        }
+                    }
+                }
+                else
+                {
+                    if (word.Length > maxWordLength)
+                    {
+                        maxWordLength = word.Length;
+                        wordsCount = 0;
+                        Array.Clear(words, 0, words.Length);
+                        words[wordsCount] = word;
+                    } else if ((word.Length == maxWordLength) && (word.Length > 0))
+                        {
+                        wordsCount++;
+                        words[wordsCount] = word;
+                    }
+                    //wordsCount++;
+                    word = "";
+                }
+            }
+
+            string[] maxWords = new string[wordsCount + 1];
+
+            Array.Copy(words, maxWords, wordsCount + 1);
+            //Console.WriteLine(wordsCount);
+            return maxWords;
         }
     }
 }
