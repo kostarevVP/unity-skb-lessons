@@ -42,7 +42,7 @@ namespace Homework_theme_05
             // Пример: ПППОООГГГООООДДДААА >>> ПОГОДА
             // Пример: Ххххоооорррооошшшиий деееннннь >>> хороший день
 
-            RemoveRepeatedLettersOperate();
+            //RemoveRepeatedLettersOperate();
 
             // Задание 4. Написать метод принимающий некоторое количесво чисел, выяснить
             // является заданная последовательность элементами арифметической или геометрической прогрессии
@@ -51,6 +51,9 @@ namespace Homework_theme_05
             //             http://ru.wikipedia.org/wiki/Арифметическая_прогрессия
             //             http://ru.wikipedia.org/wiki/Геометрическая_прогрессия
             //
+
+            CheckProgressionTypeOperate();
+
             // *Задание 5
             // Вычислить, используя рекурсию, функцию Аккермана:
             // A(2, 5), A(1, 2)
@@ -581,6 +584,105 @@ namespace Homework_theme_05
             }
 
             return newText;
+        }
+
+        /// <summary>
+        /// Функция, обрабатывающая ввод текста и вывод результата для определения типа прогрессии
+        /// </summary>
+        static void CheckProgressionTypeOperate()
+        {
+            Console.WriteLine("Введите последовательность чисел через пробел (можно также вводить десятичные с , и отрицательные):");
+
+            string numbers = Console.ReadLine();
+
+            int checkProgressionType = CheckProgressionType(numbers);
+
+            if (checkProgressionType == 1)
+            {
+                Console.WriteLine("Арифметическая прогрессия");
+            } else if (checkProgressionType == 2)
+            {
+                Console.WriteLine("Геометрическая прогрессия");
+            } else
+            {
+                Console.WriteLine("Прогрессии нет");
+            }
+        }
+
+        /// <summary>
+        /// Функция определения типа прогрессии
+        /// </summary>
+        /// <param name="numbersString">Строка с числами</param>
+        /// <returns>Номер типа прогрессии или ошибки, если ее нет</returns>
+        static int CheckProgressionType(string numbersString)
+        {
+            double[] numbersArray = GetNumbers(numbersString);
+
+            int result = 1;
+
+            if (numbersArray.Length < 2) return 0;
+
+            double arithmeticStep = numbersArray[1] - numbersArray[0];
+            //Console.WriteLine(arithmeticStep);
+
+            for (int i = 2; i < numbersArray.Length; i++)
+            {
+                if ((numbersArray[i] - numbersArray[i - 1]) != arithmeticStep)
+                {
+                    result = 2;
+                    break;
+                }
+            }
+
+            if (result == 2)
+            {
+                if (numbersArray[0] != 0) return 0;
+                double geomethricStep = numbersArray[1] / numbersArray[0];
+                //Console.WriteLine("step:" +geomethricStep);
+
+                for (int i = 2; i < numbersArray.Length; i++)
+                {
+                    //Console.WriteLine(numbersArray[i - 1] * geomethricStep);
+                    if (numbersArray[i] != numbersArray[i - 1] * geomethricStep)
+                    {
+                        result = 0;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Функция перевода строки с числами в массив чисел
+        /// </summary>
+        /// <param name="numbers">Строка с числами</param>
+        /// <returns>Массив чисел</returns>
+        static double[] GetNumbers(string numbers)
+        {
+            string[] rawNumbers = new string[numbers.Length / 2 + 1];
+
+            int numbersCount = 0;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (((numbers[i] >= '0') && (numbers[i] <= '9')) || (numbers[i] == ',') || (numbers[i] == '-'))
+                {
+                    rawNumbers[numbersCount] += numbers[i];
+                }
+                else
+                {
+                    numbersCount++;
+                }
+            }
+
+            double[] numbersArray = new double[numbersCount + 1];
+
+            for (int i = 0; i <= numbersCount; i++)
+            {
+                numbersArray[i] = double.Parse(rawNumbers[i]);
+            }
+
+            return numbersArray;
         }
     }
 }
