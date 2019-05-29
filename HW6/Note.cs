@@ -14,14 +14,12 @@ namespace Homework_6
         /// </summary>
         /// <param name="NoteName">Название заметки</param>
         /// <param name="NoteText">Текст заметки</param>
-        /// <param name="DiaryName">Название ежедневника</param>
         /// <param name="CreatedAt">Время создания</param>
         /// <param name="UpdatedAt">Время последнего редактирования</param>
-        public Note(string NoteName, string NoteText, string DiaryName, DateTime CreatedAt, DateTime UpdatedAt)
+        public Note(string NoteName, string NoteText, DateTime CreatedAt, DateTime UpdatedAt)
         {
             this.noteName = NoteName;
             this.noteText = NoteText;
-            this.diaryName = DiaryName;
             this.createdAt = CreatedAt;
             //this.createdAt = DateTime.Now;
             //this.updatedAt = DateTime.Now;
@@ -39,11 +37,6 @@ namespace Homework_6
         /// Текст заметки
         /// </summary>
         public string NoteText { get { return this.noteText; } set { this.noteText = value; } }
-
-        /// <summary>
-        /// Название ежедневника
-        /// </summary>
-        public string DiaryName { get { return this.diaryName; } set { this.diaryName = value; } }
 
         /// <summary>
         /// Время создания
@@ -68,11 +61,6 @@ namespace Homework_6
         /// Поле "Текст заметки"
         /// </summary>
         private string noteText;
-
-        /// <summary>
-        /// Поле "ID ежедневника"
-        /// </summary>
-        private string diaryName;
 
         /// <summary>
         /// Поле "Время создания"

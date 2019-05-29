@@ -13,13 +13,11 @@ namespace Homework_6
         /// Создание объекта ежедневника
         /// </summary>
         /// <param name="DiaryName">Название ежедневника</param>
-        /// <param name="DirectoryPath">Путь к ежедневнику</param>
         /// <param name="CreatedAt">Время создания</param>
         /// <param name="UpdatedAt">Время последнего редактирования</param>
-        public Diary(string DiaryName, string DirectoryPath, DateTime CreatedAt, DateTime UpdatedAt)
+        public Diary(string DiaryName, DateTime CreatedAt, DateTime UpdatedAt)
         {
             this.diaryName = DiaryName;
-            this.path = DirectoryPath;
             this.createdAt = CreatedAt;
             this.updatedAt = UpdatedAt;
         }
@@ -30,11 +28,6 @@ namespace Homework_6
         /// Название
         /// </summary>
         public string DiaryName { get { return this.diaryName; } set { this.diaryName = value; } }
-
-        /// <summary>
-        /// Путь
-        /// </summary>
-        public string DirectoryPath { get { return this.path; } set { this.path = value; } }
 
         /// <summary>
         /// Время создания
@@ -54,12 +47,6 @@ namespace Homework_6
         /// Поле "Название"
         /// </summary>
         private string diaryName;
-
-        
-        /// <summary>
-        /// Поле "Путь к файлу"
-        /// </summary>
-        private string path;
 
         /// <summary>
         /// Поле "Время создания"
