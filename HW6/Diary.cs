@@ -17,47 +17,24 @@ namespace Homework_6
         /// <param name="UpdatedAt">Время последнего редактирования</param>
         public Diary(string DiaryName, DateTime CreatedAt, DateTime UpdatedAt)
         {
-            this.diaryName = DiaryName;
-            this.createdAt = CreatedAt;
-            this.updatedAt = UpdatedAt;
+            this.DiaryName = DiaryName;
+            this.CreatedAt = CreatedAt;
+            this.UpdatedAt = UpdatedAt;
         }
-
-        #region Свойства
 
         /// <summary>
         /// Название
         /// </summary>
-        public string DiaryName { get { return this.diaryName; } set { this.diaryName = value; } }
+        public string DiaryName { get; set; }
 
         /// <summary>
         /// Время создания
         /// </summary>
-        public DateTime CreatedAt { get { return this.createdAt; } set { this.createdAt = value; } }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Время последнего редактирования
         /// </summary>
-        public DateTime UpdatedAt { get { return this.updatedAt; } set { this.updatedAt = value; } }
-
-        #endregion
-
-        #region Поля
-
-        /// <summary>
-        /// Поле "Название"
-        /// </summary>
-        private string diaryName;
-
-        /// <summary>
-        /// Поле "Время создания"
-        /// </summary>
-        private DateTime createdAt;
-
-        /// <summary>
-        /// Поле "Время последнего редактирования"
-        /// </summary>
-        private DateTime updatedAt;
-
-        #endregion
+        public DateTime UpdatedAt { get; set; }
     }
 }
