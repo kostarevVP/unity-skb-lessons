@@ -10,68 +10,43 @@ namespace Homework_6
     struct Note
     {
         /// <summary>
-        /// Создание объекта записи
+        /// ID заметки
         /// </summary>
-        /// <param name="NoteName">Название заметки</param>
-        /// <param name="NoteText">Текст заметки</param>
-        /// <param name="CreatedAt">Время создания</param>
-        /// <param name="UpdatedAt">Время последнего редактирования</param>
-        public Note(string NoteName, string NoteText, DateTime CreatedAt, DateTime UpdatedAt)
-        {
-            this.noteName = NoteName;
-            this.noteText = NoteText;
-            this.createdAt = CreatedAt;
-            //this.createdAt = DateTime.Now;
-            //this.updatedAt = DateTime.Now;
-            this.updatedAt = UpdatedAt;
-        }
-
-        #region Свойства
+        public int NoteId { get; set; }
 
         /// <summary>
         /// Название заметки
         /// </summary>
-        public string NoteName { get { return this.noteName; } set { this.noteName = value; } }
+        public string NoteName { get; set; }
 
         /// <summary>
         /// Текст заметки
         /// </summary>
-        public string NoteText { get { return this.noteText; } set { this.noteText = value; } }
+        public string NoteText { get; set; }
 
         /// <summary>
         /// Время создания
         /// </summary>
-        public DateTime CreatedAt { get { return this.createdAt; } set { this.createdAt = value; } }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Время последнего редактирования
         /// </summary>
-        public DateTime UpdatedAt { get { return this.updatedAt; } set { this.updatedAt = value; } }
-
-        #endregion
-
-        #region Поля
+        public DateTime UpdatedAt { get; set; }
 
         /// <summary>
-        /// Поле "Название"
+        /// Место события
         /// </summary>
-        private string noteName;
+        public string Place { get; set; }
 
         /// <summary>
-        /// Поле "Текст заметки"
+        /// Дата события
         /// </summary>
-        private string noteText;
+        public DateTime Date { get; set; }
 
         /// <summary>
-        /// Поле "Время создания"
+        /// Теги события
         /// </summary>
-        private DateTime createdAt;
-
-        /// <summary>
-        /// Поле "Время последнего редактирования"
-        /// </summary>
-        private DateTime updatedAt;
-
-        #endregion
+        public List<Tag> Tags { get; set; }
     }
 }
