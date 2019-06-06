@@ -7,13 +7,13 @@ namespace Homework_6
     /// <summary>
     /// Структура "Директория"
     /// </summary>
-    struct Directory
+    struct DiaryDirectory
     {
         /// <summary>
         /// Создание объекта директории
         /// </summary>
         /// <param name="DirectoryPath"></param>
-        public Directory(string DirectoryPath)
+        public DiaryDirectory(string DirectoryPath)
         {
             this.path = DirectoryPath;
         }
