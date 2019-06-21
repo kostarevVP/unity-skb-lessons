@@ -9,29 +9,17 @@ namespace Homework_6
     {
 
         /// <summary>
-        /// Функция создания корневой директории ежедневника
+        /// Функция создания новой директории
         /// </summary>
-        public void CreateMainDirectory()
+        /// <param name="parentDirectory">Информация о родительской директории</param>
+        /// <param name="newDirName">Имя новой директории</param>
+        /// <returns></returns>
+        public bool CreateNewDirectory(DirectoryInfo parentDirectory, string newDirName)
         {
-            if (CreateNewDirectory(GetRootDirectoryPath() + "/MyDiary"))
+            string newDirPath = parentDirectory.FullName + "/" + newDirName;
+            if (!Directory.Exists(newDirPath))
             {
-                Console.WriteLine("Создана директория ежедневника");
-            } else
-            {
-                Console.WriteLine("Директория ежедневника уже существует");
-            }
-        }
-
-        /// <summary>
-        /// Функция создания директории
-        /// </summary>
-        /// <param name="directoryPath">Путь к директории</param>
-        /// <returns>Была ли создана директория</returns>
-        public bool CreateNewDirectory(string directoryPath)
-        {
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(newDirPath);
                 return true;
             }
             else
@@ -44,13 +32,13 @@ namespace Homework_6
         /// Получить путь к корневой директории проекта
         /// </summary>
         /// <returns>Строка с путем</returns>
-        public static string GetRootDirectoryPath()
+        public DirectoryInfo GetRootDirectoryInfo()
         {
             string workingDirectory = Environment.CurrentDirectory;
             DirectoryInfo directoryInfo = new DirectoryInfo(workingDirectory);
             DirectoryInfo rootDirectoryInfo = directoryInfo.Parent.Parent.Parent;
 
-            return rootDirectoryInfo.FullName;
+            return rootDirectoryInfo;
         }
 
         public static void PrintDir()

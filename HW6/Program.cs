@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Homework_6
 {
@@ -6,7 +7,14 @@ namespace Homework_6
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            /*DirectoryRepository dr = new DirectoryRepository();
+            dr.CreateMainDirectory();
+
+            DiariesRepository diaries = new DiariesRepository();
+            */
+            Operations.Start();
+
+            Console.ReadKey();
         }
     }
 }

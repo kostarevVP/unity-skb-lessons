@@ -12,20 +12,32 @@ namespace Homework_6
         /// <summary>
         /// Создание объекта директории
         /// </summary>
-        /// <param name="DirectoryPath"></param>
-        public DiaryDirectory(string DirectoryPath)
+        /// <param name="DirectoryName">Имя директории</param>
+        /// <param name="ParentPath">Путь к родительской директории</param>
+        public DiaryDirectory(string DirectoryName, string ParentPath)
         {
-            this.path = DirectoryPath;
+            this.name = DirectoryName;
+            this.parentPath = ParentPath;
         }
 
         /// <summary>
-        /// Путь к директории
+        /// Имя директории
         /// </summary>
-        public string DirectoryPath { get { return this.path; } set { this.path = value; } }
+        public string DirectoryName { get { return this.name; } set { this.name = value; } }
+
+        /// <summary>
+        /// Путь к родительской директории
+        /// </summary>
+        public string ParentPath { get { return this.parentPath; } set { this.parentPath = value; } }
 
         /// <summary>
         /// Поле "Путь к директории"
         /// </summary>
-        private string path;
+        private string name;
+
+        /// <summary>
+        /// Поле "Путь к родительской дироектории"
+        /// </summary>
+        private string parentPath;
     }
 }
